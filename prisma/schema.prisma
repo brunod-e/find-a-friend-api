@@ -27,7 +27,24 @@ model Pet {
     photos             String[]
     requirements       String
 
-    //   checkIns CheckIn[]
+    org   Org?    @relation(fields: [orgId], references: [id])
+    orgId String?
 
     @@map("pets")
+}
+
+model Org {
+    id            String   @id @default(uuid())
+    name          String
+    email         String   @unique
+    cep           String
+    address       String
+    whatsapp      String
+    password_hash String
+    latitude      Decimal
+    longitude     Decimal
+    created_at    DateTime @default(now())
+    pets          Pet[]
+
+    @@map("orgs")
 }
