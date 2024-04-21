@@ -1,13 +1,14 @@
 import { Pet, Prisma } from "@prisma/client";
-
-export interface FindManyNearbyParams {
-  latitude: number;
-  longitude: number;
+export interface FindAllParams {
+  address: string;
+  age?: string;
+  size?: string;
+  energy_level?: string;
+  environment?: string;
 }
 
 export interface PetsRepository {
   findById(userId: string): Promise<Pet | null>;
-  searchMany(query: string, page: number): Promise<Pet[]>;
-  findManyNearby(params: FindManyNearbyParams): Promise<Pet[]>;
+  findAll(params: FindAllParams): Promise<Pet[]>;
   create(data: Prisma.PetCreateInput): Promise<Pet>;
 }
