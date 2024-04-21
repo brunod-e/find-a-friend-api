@@ -5,6 +5,7 @@ import fastify from "fastify";
 import { ZodError } from "zod";
 import { env } from "./env";
 import { petsRoutes } from "./http/controllers/pets/routes";
+import { orgsRoutes } from "./http/controllers/orgs/routes";
 
 export const app = fastify();
 app.register(fastifyJwt, {
@@ -17,6 +18,7 @@ app.register(fastifyJwt, {
 });
 app.register(fastifyCookie);
 app.register(petsRoutes);
+app.register(orgsRoutes);
 
 app.register(cors, {
   origin: true,

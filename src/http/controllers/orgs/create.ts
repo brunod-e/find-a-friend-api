@@ -3,18 +3,18 @@ import { makeCreateOrgService } from "@/services/factories/make-create-org-servi
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
-const bodySchema = z.object({
-  name: z.string(),
-  email: z.string(),
-  whatsapp: z.string(),
-  password: z.string(),
-  cep: z.string(),
-  address: z.string(),
-  latitude: z.number(),
-  longitude: z.number(),
-});
+export const create = async (request: FastifyRequest, reply: FastifyReply) => {
+  const bodySchema = z.object({
+    name: z.string(),
+    email: z.string(),
+    whatsapp: z.string(),
+    password: z.string(),
+    cep: z.string(),
+    address: z.string(),
+    latitude: z.number(),
+    longitude: z.number(),
+  });
 
-export async function create(request: FastifyRequest, reply: FastifyReply) {
   const body = bodySchema.parse(request.body);
 
   const createOrgUseCase = makeCreateOrgService();
@@ -28,4 +28,4 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       return reply.status(400).send({ message: error.message });
     }
   }
-}
+};

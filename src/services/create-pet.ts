@@ -4,7 +4,7 @@ import { Pet } from "@prisma/client";
 interface CreatePetServiceProps {
   name: string;
   description: string | null;
-  age: number;
+  age: string;
   size: string;
   energy_level: string;
   independence_level: string;
